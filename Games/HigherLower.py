@@ -36,13 +36,17 @@ def print_question(a,b):
         optionB = f"B. {name} is a {description} from {country}"
         print(optionB)
 
+def print_info(a,b):
+    print(f"{data[a]['name']} has {data[A]['follower_count']} million followers\n")
+    print(f"{data[b]['name']} has {data[B]['follower_count']} million followers\n\n")
+
+A = randint(0, len(data)-1)
+B = randint(0, len(data)-1)
+
 while CORRECT:
     #Random A values   
 
     print('WHO HAS MORE FOLLOWERS?\n')
-    A = randint(0, len(data)-1)
-    B = randint(0, len(data)-1)
-
     while A==B:
         B = randint(0, len(data)-1)
     
@@ -52,14 +56,17 @@ while CORRECT:
 
     if u=='A' and A<B:
         print('CORRECT\n')
+        print_info(A,B)
+        B=randint(0, len(data)-1)
     elif u=='B' and B<A:
         print('CORRECT\n')
+        print_info(A,B)
+        A=B
+        B=randint(0, len(data)-1)
     else:
         print('WRONG\n')
+        print_info(A,B)
         CORRECT = False
         print(f'your score {n}\n')
     
     n=n+1
-
-    print(f"{data[A]['name']} has {data[A]['follower_count']} million followers\n")
-    print(f"{data[B]['name']} has {data[B]['follower_count']} million followers\n\n")
